@@ -1,0 +1,318 @@
+@import "tailwindcss";
+
+@font-face {
+  font-family: "Euclid Circular B";
+  src: url("https://pub-c050457d48794d5bb9ffc2b4649de2c1.r2.dev/Euclid%20Font/EuclidCircularB-Regular.otf")
+    format("opentype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Euclid Circular B";
+  src: url("https://pub-c050457d48794d5bb9ffc2b4649de2c1.r2.dev/Euclid%20Font/EuclidCircularB-Medium.otf")
+    format("opentype");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Euclid Circular B";
+  src: url("https://pub-c050457d48794d5bb9ffc2b4649de2c1.r2.dev/Euclid%20Font/EuclidCircularB-Semibold.otf")
+    format("opentype");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@theme inline {
+  --spacing: 0.0625rem;
+  --font-sans: "Euclid Circular B", system-ui, sans-serif;
+}
+
+@import "./preview-stubs/tokens.css";
+@import "./preview-stubs/components.css";
+
+html,
+body,
+#root {
+  font-family: "Euclid Circular B", system-ui, sans-serif;
+}
+
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  margin: 0;
+  background: #0a0a0a;
+}
+
+@keyframes intro-logo-fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.intro-logo-fade-in {
+  opacity: 0;
+  animation: intro-logo-fade-in ease-out forwards;
+  animation-duration: 1.5s;
+}
+
+@keyframes intro-splash-bg-pan {
+  from {
+    transform: translateX(4%);
+  }
+  to {
+    transform: translateX(-6%);
+  }
+}
+
+.intro-splash-bg-pan {
+  animation: intro-splash-bg-pan var(--intro-splash-bg-pan-duration, 14s) linear forwards;
+  will-change: transform;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .intro-logo-fade-in {
+    animation: none;
+    opacity: 1;
+  }
+
+  .intro-splash-bg-pan {
+    animation: none;
+    transform: none;
+  }
+
+  .intro-rating-shimmer::after {
+    animation: none;
+    opacity: 0;
+  }
+
+  .splash-usp-fade-in {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes intro-rating-shimmer {
+  0%,
+  38% {
+    transform: translateX(-140%) skewX(-10deg);
+  }
+
+  88% {
+    transform: translateX(140%) skewX(-10deg);
+  }
+
+  100% {
+    transform: translateX(140%) skewX(-10deg);
+  }
+}
+
+.intro-rating-shimmer {
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.intro-rating-shimmer::after {
+  content: "";
+  position: absolute;
+  inset: -25% -50%;
+  background: linear-gradient(
+    100deg,
+    transparent 22%,
+    rgba(255, 255, 255, 0.02) 36%,
+    rgba(255, 255, 255, 0.06) 44%,
+    rgba(255, 255, 255, 0.1) 50%,
+    rgba(255, 255, 255, 0.06) 56%,
+    rgba(255, 255, 255, 0.02) 64%,
+    transparent 78%
+  );
+  transform: translateX(-140%) skewX(-10deg);
+  animation: intro-rating-shimmer 9s cubic-bezier(0.42, 0, 0.18, 1) infinite;
+  pointer-events: none;
+}
+
+@keyframes splash-usp-slide-in {
+  from {
+    opacity: 0;
+    transform: translate3d(
+      var(--splash-usp-slide-x, 0px),
+      var(--splash-usp-slide-y, 48px),
+      0
+    );
+  }
+
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+.splash-usp-fade-in {
+  opacity: 0;
+  --splash-usp-slide-x: 0px;
+  --splash-usp-slide-y: 48px;
+  animation: splash-usp-slide-in cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  animation-duration: 780ms;
+  will-change: transform, opacity;
+}
+
+/** 1.2px gradient stroke with smooth corners (superellipse) + masked edge. */
+.splash-usp-photo-card {
+  --usp-card-radius: 24px;
+  --usp-card-border-weight: 1.2px;
+  --usp-card-border-gradient: linear-gradient(
+    152deg,
+    rgb(255 255 255 / 100%) 0%,
+    rgb(255 255 255 / 100%) 30%,
+    rgb(255 255 255 / 0.72) 40%,
+    rgb(255 255 255 / 0.45) 52%,
+    rgb(255 255 255 / 0.22) 66%,
+    rgb(255 255 255 / 0.08) 82%,
+    rgb(255 255 255 / 0.02) 92%,
+    rgb(255 255 255 / 0) 100%
+  );
+
+  position: relative;
+  isolation: isolate;
+  border-radius: var(--usp-card-radius);
+  corner-shape: superellipse(2.2);
+}
+
+.splash-usp-photo-card--highlight-bottom {
+  --usp-card-border-gradient: linear-gradient(
+    to top,
+    rgb(255 255 255 / 100%) 0%,
+    rgb(255 255 255 / 100%) 30%,
+    rgb(255 255 255 / 0.72) 40%,
+    rgb(255 255 255 / 0.45) 52%,
+    rgb(255 255 255 / 0.22) 66%,
+    rgb(255 255 255 / 0.08) 82%,
+    rgb(255 255 255 / 0.02) 92%,
+    rgb(255 255 255 / 0) 100%
+  );
+}
+
+.splash-usp-photo-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  border-radius: inherit;
+  corner-shape: inherit;
+  padding: var(--usp-card-border-weight);
+  background: var(--usp-card-border-gradient);
+  pointer-events: none;
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+}
+
+.splash-main-screen-glow-soften {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(
+      ellipse 130% 95% at 92% 8%,
+      rgb(16 72 48 / 0.22) 0%,
+      rgb(16 72 48 / 0.08) 38%,
+      transparent 72%
+    ),
+    radial-gradient(
+      ellipse 130% 95% at 8% 92%,
+      rgb(16 72 48 / 0.26) 0%,
+      rgb(16 72 48 / 0.1) 40%,
+      transparent 74%
+    );
+}
+
+.splash-usp-photo-card-inner {
+  position: relative;
+  z-index: 0;
+  margin: var(--usp-card-border-weight);
+  overflow: hidden;
+  border-radius: calc(var(--usp-card-radius) - var(--usp-card-border-weight));
+  corner-shape: superellipse(2.2);
+  background: #121212;
+}
+
+/** CTA — radius on shell + rim; button inherits so one token controls the silhouette. */
+.splash-cta-shell {
+  --splash-cta-radius: 16px;
+  --splash-cta-corner-smooth: superellipse(3);
+  --usp-card-border-weight: 1.2px;
+  --usp-card-border-gradient: linear-gradient(
+    to top,
+    rgb(255 255 255 / 100%) 0%,
+    rgb(255 255 255 / 100%) 30%,
+    rgb(255 255 255 / 0.72) 40%,
+    rgb(255 255 255 / 0.45) 52%,
+    rgb(255 255 255 / 0.22) 66%,
+    rgb(255 255 255 / 0.08) 82%,
+    rgb(255 255 255 / 0.02) 92%,
+    rgb(255 255 255 / 0) 100%
+  );
+
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  border-radius: var(--splash-cta-radius);
+  corner-shape: var(--splash-cta-corner-smooth);
+}
+
+.splash-cta-shell::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  border-radius: inherit;
+  corner-shape: inherit;
+  padding: var(--usp-card-border-weight);
+  background: var(--usp-card-border-gradient);
+  pointer-events: none;
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+}
+
+.splash-cta-shell .splash-cta-button {
+  position: relative;
+  z-index: 0;
+  width: 100%;
+  margin: 0;
+  min-height: 48px;
+  border: none;
+  border-radius: inherit;
+  corner-shape: inherit;
+  background: linear-gradient(
+    180deg,
+    rgb(255 255 255 / 100%) 0%,
+    rgb(255 255 255 / 98%) 45%,
+    rgb(248 248 248 / 100%) 100%
+  );
+  box-shadow: none;
+}
+
+.splash-cta-shell .splash-cta-button.acko-btn--lg {
+  border-radius: inherit;
+  corner-shape: inherit;
+}

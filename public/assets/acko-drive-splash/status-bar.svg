@@ -1,0 +1,20 @@
+<svg width="360" height="40" viewBox="0 0 360 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+  <text
+    x="16"
+    y="25.5"
+    fill="#FFFFFF"
+    font-family="Euclid Circular B, system-ui, sans-serif"
+    font-size="13"
+    font-weight="600"
+    letter-spacing="0"
+  >
+    23:10
+  </text>
+  <rect x="282" y="17" width="3" height="6" rx="0.75" fill="#FFFFFF" />
+  <rect x="287" y="15" width="3" height="8" rx="0.75" fill="#FFFFFF" />
+  <rect x="292" y="13" width="3" height="10" rx="0.75" fill="#FFFFFF" opacity="0.35" />
+  <rect x="297" y="11" width="3" height="12" rx="0.75" fill="#FFFFFF" opacity="0.35" />
+  <rect x="326" y="12" width="22" height="11" rx="2.5" stroke="#FFFFFF" stroke-width="1.2" />
+  <rect x="349" y="15" width="1.5" height="5" rx="0.5" fill="#FFFFFF" opacity="0.55" />
+  <rect x="328" y="14" width="17" height="7" rx="1.2" fill="#FFFFFF" />
+</svg>
