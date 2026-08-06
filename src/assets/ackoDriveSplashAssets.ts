@@ -49,4 +49,17 @@ export const ackoDriveSplashAssets = {
     "/assets/acko-drive-splash/intro-variant-61/city-dot.svg",
   mainSplashBackground: "/assets/acko-drive-splash/main-splash-background.png",
   splashUspArrow: "/assets/acko-drive-splash/splash-usp-arrow.svg",
+  variant68GlowEllipse: "/assets/acko-drive-splash/variant-68/glow-ellipse.svg",
+  variant68HeaderLogoLockup:
+    "/assets/acko-drive-splash/variant-68/header-logo-lockup.png",
+  variant68Close: "/assets/acko-drive-splash/variant-68/close.png",
+  variant68PhotoPickupBase:
+    "/assets/acko-drive-splash/variant-68/photo-pickup-base.png",
+  variant68PhotoPickupOverlay:
+    "/assets/acko-drive-splash/variant-68/photo-pickup-overlay.png",
+  variant68PhotoSpareParts:
+    "/assets/acko-drive-splash/variant-68/photo-spare-parts.png",
+  variant68PhotoSameDay: "/assets/acko-drive-splash/variant-68/photo-same-day.png",
+  variant68ArrowPartA: "/assets/acko-drive-splash/variant-68/arrow-part-a.svg",
+  variant68ArrowPartB: "/assets/acko-drive-splash/variant-68/arrow-part-b.svg",
 } as const;

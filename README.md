@@ -1,6 +1,6 @@
 # ACKO Drive splash (Figma → ACKO DS)
 
-Implementation of **Splash Screen Iteration 1 Variant 37** from the [ACKO Drive ↔ ACKO App Figma file](https://www.figma.com/design/oFjLLGAd9RctdD4ql2hOn2/ACKO-Drive-%3C%3E-ACKO-App?node-id=15979-5909).
+Implementation of **Splash Screen Iteration 1 Variant 68** from the [ACKO Drive ↔ ACKO App Figma file](https://www.figma.com/design/oFjLLGAd9RctdD4ql2hOn2/ACKO-Drive-%3C%3E-ACKO-App?node-id=16768-20951).
 
 ## Local preview
 
