@@ -5,14 +5,18 @@ import react from "@vitejs/plugin-react";
 import tailwindcss from "@tailwindcss/vite";
 import { ackoResolveAlias, viteRootDir } from "./vite.shared";
 
-function logDevUrls(port: number): Plugin {
+function logDevUrls(): Plugin {
   return {
     name: "log-dev-urls",
     configureServer(server) {
       server.httpServer?.once("listening", () => {
+        const address = server.httpServer?.address();
+        const port =
+          typeof address === "object" && address !== null ? address.port : 5173;
         console.log("\n  ACKO Drive — Kia Seltos details (Figma 17346:15109)\n");
         console.log(`  → http://127.0.0.1:${port}/`);
-        console.log(`  → http://localhost:${port}/\n`);
+        console.log(`  → http://localhost:${port}/`);
+        console.log(`  → Splash preview: http://localhost:${port}/splash.html\n`);
         console.log("  Keep this terminal open while viewing in the browser.\n");
       });
     },
@@ -20,7 +24,7 @@ function logDevUrls(port: number): Plugin {
 }
 
 export default defineConfig({
-  plugins: [tailwindcss(), react(), logDevUrls(5173)],
+  plugins: [tailwindcss(), react(), logDevUrls()],
   resolve: {
     alias: ackoResolveAlias,
   },
