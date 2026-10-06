@@ -472,10 +472,12 @@ function RivalsCard({
   );
 }
 
+const ASK_SID_CAR = "Creta";
+
 const ASK_SID_PROMPTS = [
-  "about car variants or model",
-  "about mileage and tank capacity",
-  "about colors available or best variant",
+  "about car variants or model...",
+  "about mileage and tank capacity...",
+  `or anything about ${ASK_SID_CAR}...`,
 ];
 
 function useAskSidPrompt() {
