@@ -5,34 +5,33 @@ import react from "@vitejs/plugin-react";
 import tailwindcss from "@tailwindcss/vite";
 import { ackoResolveAlias, viteRootDir } from "./vite.shared";
 
-function detailsPathPlugin(): Plugin {
+function logDevUrls(port: number): Plugin {
   return {
-    name: "details-path",
+    name: "log-dev-urls",
     configureServer(server) {
-      server.middlewares.use((req, _res, next) => {
-        const url = req.url?.split("?")[0] ?? "";
-        if (url === "/details" || url === "/details/") {
-          req.url = "/details.html";
-        }
-        next();
+      server.httpServer?.once("listening", () => {
+        console.log("\n  ACKO Drive — Kia Seltos details (Figma 17346:15109)\n");
+        console.log(`  → http://127.0.0.1:${port}/`);
+        console.log(`  → http://localhost:${port}/\n`);
+        console.log("  Keep this terminal open while viewing in the browser.\n");
       });
     },
   };
 }
 
 export default defineConfig({
-  plugins: [tailwindcss(), react(), detailsPathPlugin()],
+  plugins: [tailwindcss(), react(), logDevUrls(5173)],
   resolve: {
     alias: ackoResolveAlias,
   },
   server: {
-    host: "127.0.0.1",
+    host: "0.0.0.0",
     port: 5173,
     strictPort: false,
     open: "/",
   },
   preview: {
-    host: "127.0.0.1",
+    host: "0.0.0.0",
     port: 4173,
     strictPort: false,
     open: "/",
@@ -41,7 +40,7 @@ export default defineConfig({
     rollupOptions: {
       input: {
         main: path.resolve(viteRootDir, "index.html"),
-        details: path.resolve(viteRootDir, "details.html"),
+        splash: path.resolve(viteRootDir, "splash.html"),
       },
     },
   },

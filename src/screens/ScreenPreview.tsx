@@ -1,16 +1,14 @@
 import { useEffect, useState } from "react";
 import { INTRO_SPLASH_VISIBLE_MS } from "../constants/introSplash";
-import { AckoDriveCarDetailsScreen } from "./AckoDriveCarDetailsScreen";
 import { AckoDriveIntroSplashScreen } from "./AckoDriveIntroSplashScreen";
 import { AckoDriveSplashScreen } from "./AckoDriveSplashScreen";
 
-type ScreenId = "flow" | "intro" | "main" | "details";
+type ScreenId = "flow" | "intro" | "main";
 
 const SCREENS: { id: ScreenId; label: string }[] = [
   { id: "flow", label: "Auto flow" },
   { id: "intro", label: "Intro splash" },
   { id: "main", label: "Main splash" },
-  { id: "details", label: "Car details" },
 ];
 
 function AutoFlowPreview() {

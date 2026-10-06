@@ -4,14 +4,12 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "start": "node scripts/dev-local.mjs",
     "dev": "vite",
-    "dev:details": "vite --config vite.details.config.ts",
-    "dev:all": "node scripts/dev-local.mjs",
-    "mockup": "node scripts/serve-public.mjs",
+    "start": "vite",
     "build": "tsc -b && vite build",
-    "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "mockup": "node scripts/serve-public.mjs",
+    "lint": "eslint ."
   },
   "dependencies": {
     "react": "^18.3.1",
