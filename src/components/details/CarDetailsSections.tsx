@@ -475,7 +475,7 @@ export function AskSidSection({ onAsk }: { onAsk: () => void }) {
   return (
     <section className="relative h-[196px] overflow-hidden bg-[#121212]">
       <Asset src={a.askSidGrid} className="absolute left-[-6px] top-[74px] h-[170px] w-[366px] object-cover opacity-40" />
-      <div className="relative z-[1] flex flex-col items-start gap-[12px] px-[20px] pt-[20px]">
+      <div className="relative z-[1] flex flex-col items-start gap-[32px] px-[20px] pt-[20px]">
         <Typography variant="heading-xs" weight="semibold" color="invert" className="w-full text-center">
           Looking for more details about Hyundai Creta?
         </Typography>
