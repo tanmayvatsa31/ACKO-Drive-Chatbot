@@ -485,17 +485,21 @@ export function AskSidSection({ onAsk }: { onAsk: () => void }) {
         <button
           type="button"
           onClick={onAsk}
-          className="relative h-[48px] w-[320px] overflow-hidden rounded-[48px] border border-black bg-black text-left"
+          className="ask-sid-field"
+          aria-label="Ask Sid about car variants or model"
         >
-          <span className="absolute left-0 top-0 size-[48px] overflow-hidden rounded-full">
-            <Asset src={a.askSidAvatar} className="h-full w-full object-cover" alt="" />
-          </span>
-          <span className="absolute left-[55px] top-[14px] flex items-center">
-            <Typography variant="label-xs" weight="medium" color="invert">
-              Ask Sid
-            </Typography>
-            <span className="ml-[4px] text-[12px] leading-[18px] text-[#a6a6a6]">
-              about car variants or model...
+          <span className="ask-sid-field__spin" aria-hidden />
+          <span className="ask-sid-field__face">
+            <span className="absolute left-0 top-0 size-[48px] overflow-hidden rounded-full">
+              <Asset src={a.askSidAvatar} className="h-full w-full object-cover" alt="" />
+            </span>
+            <span className="absolute left-[55px] top-[14px] flex items-center">
+              <Typography variant="label-xs" weight="medium" color="invert">
+                Ask Sid
+              </Typography>
+              <span className="ml-[4px] text-[12px] leading-[18px] text-[#a6a6a6]">
+                about car variants or model...
+              </span>
             </span>
           </span>
         </button>

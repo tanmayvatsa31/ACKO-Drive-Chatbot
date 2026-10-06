@@ -48,3 +48,59 @@
   display: grid;
   place-items: center;
 }
+
+.ask-sid-field {
+  position: relative;
+  height: 48px;
+  width: 320px;
+  padding: 1.5px;
+  border: 0;
+  border-radius: 48px;
+  background: transparent;
+  text-align: left;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.ask-sid-field__spin {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 420px;
+  height: 420px;
+  translate: -50% -50%;
+  background: conic-gradient(
+    from 0deg,
+    rgba(88, 250, 147, 0) 0deg,
+    rgba(88, 250, 147, 0) 250deg,
+    #146b3a 290deg,
+    #58fa93 318deg,
+    #e8fff2 334deg,
+    #58fa93 348deg,
+    rgba(88, 250, 147, 0) 360deg
+  );
+  animation: ask-sid-border-rotate 8s linear infinite;
+}
+
+.ask-sid-field__face {
+  position: relative;
+  z-index: 1;
+  display: block;
+  height: 100%;
+  overflow: hidden;
+  border-radius: 46px;
+  background: #000;
+}
+
+@keyframes ask-sid-border-rotate {
+  to {
+    transform: rotate(1turn);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ask-sid-field__spin {
+    animation: none;
+    background: #58fa93;
+  }
+}
