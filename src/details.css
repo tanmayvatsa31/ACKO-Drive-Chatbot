@@ -49,8 +49,39 @@
   place-items: center;
 }
 
+.ask-sid-field-wrap {
+  position: relative;
+  width: 320px;
+  height: 48px;
+}
+
+.ask-sid-glow,
+.ask-sid-field__inner-glow {
+  offset-path: path("M 24 1 H 296 A 23 23 0 0 1 296 47 H 24 A 23 23 0 0 1 24 1 Z");
+  offset-rotate: 0deg;
+  animation: ask-sid-glow-travel 8s linear infinite;
+  pointer-events: none;
+}
+
+.ask-sid-glow {
+  position: absolute;
+  z-index: 0;
+  width: 128px;
+  height: 72px;
+  border-radius: 50%;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(232, 255, 242, 0.95) 0%,
+    rgba(88, 250, 147, 0.72) 32%,
+    rgba(88, 250, 147, 0.22) 58%,
+    transparent 74%
+  );
+  filter: blur(10px);
+}
+
 .ask-sid-field {
   position: relative;
+  z-index: 1;
   height: 48px;
   width: 320px;
   padding: 1.5px;
@@ -92,9 +123,34 @@
   background: #000;
 }
 
+.ask-sid-field__inner-glow {
+  position: absolute;
+  z-index: 0;
+  width: 150px;
+  height: 64px;
+  border-radius: 50%;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(88, 250, 147, 0.55) 0%,
+    rgba(88, 250, 147, 0.16) 48%,
+    transparent 72%
+  );
+  filter: blur(12px);
+}
+
 @keyframes ask-sid-border-rotate {
   to {
     transform: rotate(1turn);
+  }
+}
+
+@keyframes ask-sid-glow-travel {
+  from {
+    offset-distance: 20%;
+  }
+
+  to {
+    offset-distance: 120%;
   }
 }
 
@@ -102,5 +158,11 @@
   .ask-sid-field__spin {
     animation: none;
     background: #58fa93;
+  }
+
+  .ask-sid-glow,
+  .ask-sid-field__inner-glow {
+    animation: none;
+    offset-distance: 20%;
   }
 }

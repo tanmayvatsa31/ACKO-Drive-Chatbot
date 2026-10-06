@@ -475,34 +475,35 @@ export function AskSidSection({ onAsk }: { onAsk: () => void }) {
   return (
     <section className="relative h-[196px] overflow-hidden bg-[#121212]">
       <Asset src={a.askSidGrid} className="absolute left-[-6px] top-[74px] h-[170px] w-[366px] object-cover opacity-40" />
-      <div className="absolute left-[113px] top-[97px] h-[54px] w-[157px]">
-        <Asset src={a.askSidGlow} className="absolute inset-[-154%_-45%]" />
-      </div>
       <div className="relative z-[1] flex flex-col items-start gap-[12px] px-[20px] pt-[20px]">
         <Typography variant="heading-xs" weight="semibold" color="invert" className="w-full text-center">
           Looking for more details about Hyundai Creta?
         </Typography>
-        <button
-          type="button"
-          onClick={onAsk}
-          className="ask-sid-field"
-          aria-label="Ask Sid about car variants or model"
-        >
-          <span className="ask-sid-field__spin" aria-hidden />
-          <span className="ask-sid-field__face">
-            <span className="absolute left-0 top-0 size-[48px] overflow-hidden rounded-full">
-              <Asset src={a.askSidAvatar} className="h-full w-full object-cover" alt="" />
-            </span>
-            <span className="absolute left-[55px] top-[14px] flex items-center">
-              <Typography variant="label-xs" weight="medium" color="invert">
-                Ask Sid
-              </Typography>
-              <span className="ml-[4px] text-[12px] leading-[18px] text-[#a6a6a6]">
-                about car variants or model...
+        <div className="ask-sid-field-wrap">
+          <span className="ask-sid-glow" aria-hidden />
+          <button
+            type="button"
+            onClick={onAsk}
+            className="ask-sid-field"
+            aria-label="Ask Sid about car variants or model"
+          >
+            <span className="ask-sid-field__spin" aria-hidden />
+            <span className="ask-sid-field__face">
+              <span className="ask-sid-field__inner-glow" aria-hidden />
+              <span className="absolute left-0 top-0 z-[1] size-[48px] overflow-hidden rounded-full">
+                <Asset src={a.askSidAvatar} className="h-full w-full object-cover" alt="" />
+              </span>
+              <span className="absolute left-[55px] top-[14px] z-[1] flex items-center">
+                <Typography variant="label-xs" weight="medium" color="invert">
+                  Ask Sid
+                </Typography>
+                <span className="ml-[4px] text-[12px] leading-[18px] text-[#a6a6a6]">
+                  about car variants or model...
+                </span>
               </span>
             </span>
-          </span>
-        </button>
+          </button>
+        </div>
       </div>
     </section>
   );
