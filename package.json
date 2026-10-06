@@ -7,6 +7,7 @@
     "dev": "vite",
     "start": "vite",
     "reset": "node scripts/reset-and-serve.mjs",
+    "verify": "node scripts/verify-local.mjs",
     "build": "tsc -b && vite build",
     "preview": "vite preview",
     "mockup": "node scripts/serve-public.mjs",
