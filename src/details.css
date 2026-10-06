@@ -123,6 +123,18 @@
   background: #000;
 }
 
+.ask-sid-chip {
+  position: relative;
+  display: flex;
+  height: 32px;
+  shrink: 0;
+  align-items: center;
+  gap: 5px;
+  border-radius: 24px;
+  background: rgba(64, 64, 64, 0.2);
+  padding: 0 8px;
+}
+
 .ask-sid-phrase {
   min-width: 0;
   overflow: hidden;
@@ -132,10 +144,10 @@
 .ask-sid-caret {
   display: inline-block;
   width: 1px;
-  height: 14px;
+  height: 12px;
   margin-left: 1px;
   background: #a6a6a6;
-  vertical-align: -2px;
+  vertical-align: -1px;
   animation: ask-sid-caret 1s steps(1) infinite;
 }
 

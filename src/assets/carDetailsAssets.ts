@@ -12,6 +12,8 @@ export const carDetailsAssets = {
   askSidGrid: `${base}/ask-sid-grid.png`,
   askSidAvatar: `${base}/ask-sid-avatar.png`,
   askSidGlow: `${base}/ask-sid-glow.svg`,
+  askSidChipGlow: `${base}/ask-sid-chip-glow.svg`,
+  askSidLogo: `${base}/ask-sid-logo.svg`,
   askSidGlowLeft: `${base}/ask-sid-glow-left.svg`,
   askSidGlowInput: `${base}/ask-sid-glow-input.svg`,
   iconCompareCars: `${base}/icon-compare-cars.svg`,

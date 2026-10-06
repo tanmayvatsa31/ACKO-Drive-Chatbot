@@ -543,16 +543,19 @@ export function AskSidSection({ onAsk }: { onAsk: () => void }) {
             <span className="ask-sid-field__spin" aria-hidden />
             <span className="ask-sid-field__face">
               <span className="ask-sid-field__inner-glow" aria-hidden />
-              <span className="absolute left-0 top-0 z-[1] size-[48px] overflow-hidden rounded-full">
-                <Asset src={a.askSidAvatar} className="h-full w-full object-cover" alt="" />
-              </span>
-              <span className="absolute left-[52px] right-[14px] top-1/2 z-[1] flex -translate-y-1/2 items-center">
-                <span className="shrink-0 text-[14px] font-medium leading-[20px] text-white">
-                  Ask Sid
+              <span className="absolute inset-0 z-[1] flex items-center px-[8px]">
+                <span className="ask-sid-chip">
+                  <span className="relative h-[18px] w-[24px] shrink-0">
+                    <span className="pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
+                      <Asset src={a.askSidChipGlow} alt="" />
+                    </span>
+                    <Asset src={a.askSidLogo} alt="" />
+                  </span>
+                  <span className="text-[12px] font-bold leading-[18px] text-white">Ask Sid</span>
                 </span>
                 <span
                   ref={phraseRef}
-                  className="ask-sid-phrase ml-[4px] text-[14px] font-normal leading-[20px] text-[#a6a6a6]"
+                  className="ask-sid-phrase ml-[8px] text-[12px] font-normal leading-[18px] text-[#a6a6a6]"
                 >
                   {prompt}
                   <span className="ask-sid-caret" aria-hidden />
