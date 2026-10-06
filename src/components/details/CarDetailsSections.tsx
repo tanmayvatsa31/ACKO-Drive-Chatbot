@@ -472,7 +472,7 @@ function RivalsCard({
   );
 }
 
-const ASK_SID_CAR = "Creta";
+const ASK_SID_CAR = "Kia Seltos";
 
 const ASK_SID_PROMPTS = [
   "about car variants or model...",
@@ -532,7 +532,7 @@ export function AskSidSection({ onAsk }: { onAsk: () => void }) {
       <Asset src={a.askSidGrid} className="absolute left-[-6px] top-[74px] h-[170px] w-[366px] object-cover opacity-40" />
       <div className="relative z-[1] flex flex-col items-start gap-[24px] px-[20px] pt-[20px]">
         <Typography variant="heading-xs" weight="semibold" color="invert" className="w-full text-center">
-          Looking for more details about Hyundai Creta?
+          Looking for more details about {ASK_SID_CAR}?
         </Typography>
         <div className="ask-sid-field-wrap">
           <span className="ask-sid-glow" aria-hidden />
