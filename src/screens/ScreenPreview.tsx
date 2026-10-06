@@ -1,14 +1,16 @@
 import { useEffect, useState } from "react";
 import { INTRO_SPLASH_VISIBLE_MS } from "../constants/introSplash";
+import { AckoDriveCarDetailsScreen } from "./AckoDriveCarDetailsScreen";
 import { AckoDriveIntroSplashScreen } from "./AckoDriveIntroSplashScreen";
 import { AckoDriveSplashScreen } from "./AckoDriveSplashScreen";
 
-type ScreenId = "flow" | "intro" | "main";
+type ScreenId = "flow" | "intro" | "main" | "details";
 
 const SCREENS: { id: ScreenId; label: string }[] = [
   { id: "flow", label: "Auto flow" },
   { id: "intro", label: "Intro splash" },
   { id: "main", label: "Main splash" },
+  { id: "details", label: "Car details" },
 ];
 
 function AutoFlowPreview() {
@@ -37,11 +39,13 @@ function ScreenContent({ screenId }: { screenId: ScreenId }) {
       return <AckoDriveIntroSplashScreen />;
     case "main":
       return <AckoDriveSplashScreen />;
+    case "details":
+      return <AckoDriveCarDetailsScreen />;
   }
 }
 
 export function ScreenPreview() {
-  const [activeScreen, setActiveScreen] = useState<ScreenId>("flow");
+  const [activeScreen, setActiveScreen] = useState<ScreenId>("details");
 
   return (
     <div className="min-h-dvh bg-[#0a0a0a]">

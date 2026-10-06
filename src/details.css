@@ -1,0 +1,50 @@
+.details-scroll {
+  scrollbar-width: none;
+}
+
+.details-scroll::-webkit-scrollbar {
+  display: none;
+}
+
+.details-hscroll {
+  overflow-x: auto;
+  overflow-y: hidden;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+}
+
+.details-hscroll::-webkit-scrollbar {
+  display: none;
+}
+
+.details-strike {
+  position: relative;
+}
+
+.details-strike::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+  height: 1px;
+  background: #757575;
+}
+
+.details-rating-ring {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: conic-gradient(#8ce99a var(--ring-pct), #2a2a2a var(--ring-pct));
+}
+
+.details-rating-ring-inner {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: #1e1e1e;
+  display: grid;
+  place-items: center;
+}
