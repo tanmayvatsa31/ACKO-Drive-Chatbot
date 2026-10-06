@@ -66,17 +66,18 @@
 .ask-sid-glow {
   position: absolute;
   z-index: 0;
-  width: 128px;
-  height: 72px;
+  width: 220px;
+  height: 96px;
   border-radius: 50%;
   background: radial-gradient(
     ellipse at center,
-    rgba(232, 255, 242, 0.95) 0%,
-    rgba(88, 250, 147, 0.72) 32%,
-    rgba(88, 250, 147, 0.22) 58%,
-    transparent 74%
+    rgba(88, 250, 147, 0.28) 0%,
+    rgba(46, 160, 96, 0.16) 42%,
+    rgba(46, 160, 96, 0.05) 68%,
+    transparent 78%
   );
-  filter: blur(10px);
+  filter: blur(22px);
+  opacity: 0.85;
 }
 
 .ask-sid-field {
@@ -103,11 +104,10 @@
   background: conic-gradient(
     from 0deg,
     rgba(88, 250, 147, 0) 0deg,
-    rgba(88, 250, 147, 0) 250deg,
-    #146b3a 290deg,
-    #58fa93 318deg,
-    #e8fff2 334deg,
-    #58fa93 348deg,
+    rgba(88, 250, 147, 0) 230deg,
+    rgba(46, 160, 96, 0.35) 280deg,
+    rgba(88, 250, 147, 0.7) 320deg,
+    rgba(88, 250, 147, 0.45) 345deg,
     rgba(88, 250, 147, 0) 360deg
   );
   animation: ask-sid-border-rotate 8s linear infinite;
@@ -126,16 +126,16 @@
 .ask-sid-field__inner-glow {
   position: absolute;
   z-index: 0;
-  width: 150px;
-  height: 64px;
+  width: 240px;
+  height: 80px;
   border-radius: 50%;
   background: radial-gradient(
     ellipse at center,
-    rgba(88, 250, 147, 0.55) 0%,
-    rgba(88, 250, 147, 0.16) 48%,
-    transparent 72%
+    rgba(88, 250, 147, 0.18) 0%,
+    rgba(46, 160, 96, 0.08) 46%,
+    transparent 74%
   );
-  filter: blur(12px);
+  filter: blur(18px);
 }
 
 @keyframes ask-sid-border-rotate {
