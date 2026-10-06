@@ -45,7 +45,7 @@ function ScreenContent({ screenId }: { screenId: ScreenId }) {
 }
 
 export function ScreenPreview() {
-  const [activeScreen, setActiveScreen] = useState<ScreenId>("details");
+  const [activeScreen, setActiveScreen] = useState<ScreenId>("flow");
 
   return (
     <div className="min-h-dvh bg-[#0a0a0a]">

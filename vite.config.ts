@@ -1,30 +1,32 @@
 import path from "node:path";
-import { fileURLToPath } from "node:url";
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 import tailwindcss from "@tailwindcss/vite";
-
-const rootDir = path.dirname(fileURLToPath(import.meta.url));
+import { ackoResolveAlias, viteRootDir } from "./vite.shared";
 
 export default defineConfig({
   plugins: [tailwindcss(), react()],
   resolve: {
-    alias: {
-      "@acko/button": path.resolve(rootDir, "src/preview-stubs/button.tsx"),
-      "@acko/typography": path.resolve(
-        rootDir,
-        "src/preview-stubs/typography.tsx",
-      ),
-    },
+    alias: ackoResolveAlias,
   },
   server: {
     host: true,
     port: 5173,
-    open: "/details",
+    strictPort: true,
+    open: "/",
   },
   preview: {
     host: true,
     port: 4173,
-    open: "/details",
+    strictPort: true,
+    open: "/",
+  },
+  build: {
+    rollupOptions: {
+      input: {
+        main: path.resolve(viteRootDir, "index.html"),
+        details: path.resolve(viteRootDir, "details.html"),
+      },
+    },
   },
 });

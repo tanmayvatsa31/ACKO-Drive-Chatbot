@@ -5,7 +5,8 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "dev:details": "vite --open /details",
+    "dev:details": "vite --config vite.details.config.ts",
+    "dev:all": "npm run dev & npm run dev:details",
     "mockup": "node scripts/serve-public.mjs",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
