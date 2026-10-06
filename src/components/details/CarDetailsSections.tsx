@@ -1,3 +1,4 @@
+import { useEffect, useRef, useState } from "react";
 import { Button } from "@acko/button";
 import { Typography } from "@acko/typography";
 import { carDetailsAssets as a } from "../../assets/carDetailsAssets";
@@ -471,7 +472,59 @@ function RivalsCard({
   );
 }
 
+const ASK_SID_PROMPTS = [
+  "about car variants or model",
+  "about mileage and tank capacity",
+  "about colors available or best variant",
+];
+
+function useAskSidPrompt() {
+  const [text, setText] = useState("");
+  const [promptIndex, setPromptIndex] = useState(0);
+  const [deleting, setDeleting] = useState(false);
+
+  useEffect(() => {
+    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (reduced) {
+      setText(ASK_SID_PROMPTS[0]);
+      return;
+    }
+
+    const full = ASK_SID_PROMPTS[promptIndex];
+    let delay = deleting ? 26 : 42;
+    if (!deleting && text === full) delay = 1600;
+    if (deleting && text.length === 0) delay = 280;
+
+    const timer = window.setTimeout(() => {
+      if (!deleting) {
+        if (text.length < full.length) {
+          setText(full.slice(0, text.length + 1));
+        } else {
+          setDeleting(true);
+        }
+      } else if (text.length > 0) {
+        setText(text.slice(0, -1));
+      } else {
+        setDeleting(false);
+        setPromptIndex((index) => (index + 1) % ASK_SID_PROMPTS.length);
+      }
+    }, delay);
+
+    return () => window.clearTimeout(timer);
+  }, [text, deleting, promptIndex]);
+
+  return text;
+}
+
 export function AskSidSection({ onAsk }: { onAsk: () => void }) {
+  const prompt = useAskSidPrompt();
+  const phraseRef = useRef<HTMLSpanElement>(null);
+
+  useEffect(() => {
+    const phrase = phraseRef.current;
+    if (phrase) phrase.scrollLeft = phrase.scrollWidth;
+  }, [prompt]);
+
   return (
     <section className="relative h-[196px] overflow-hidden bg-[#121212]">
       <Asset src={a.askSidGrid} className="absolute left-[-6px] top-[74px] h-[170px] w-[366px] object-cover opacity-40" />
@@ -493,12 +546,16 @@ export function AskSidSection({ onAsk }: { onAsk: () => void }) {
               <span className="absolute left-0 top-0 z-[1] size-[48px] overflow-hidden rounded-full">
                 <Asset src={a.askSidAvatar} className="h-full w-full object-cover" alt="" />
               </span>
-              <span className="absolute left-[55px] top-[14px] z-[1] flex items-center">
-                <Typography variant="label-xs" weight="medium" color="invert">
+              <span className="absolute left-[52px] right-[14px] top-1/2 z-[1] flex -translate-y-1/2 items-center">
+                <span className="shrink-0 text-[14px] font-medium leading-[20px] text-white">
                   Ask Sid
-                </Typography>
-                <span className="ml-[4px] text-[12px] leading-[18px] text-[#a6a6a6]">
-                  about car variants or model...
+                </span>
+                <span
+                  ref={phraseRef}
+                  className="ask-sid-phrase ml-[4px] text-[14px] font-normal leading-[20px] text-[#a6a6a6]"
+                >
+                  {prompt}
+                  <span className="ask-sid-caret" aria-hidden />
                 </span>
               </span>
             </span>

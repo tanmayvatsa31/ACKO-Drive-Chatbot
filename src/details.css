@@ -123,6 +123,34 @@
   background: #000;
 }
 
+.ask-sid-phrase {
+  min-width: 0;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.ask-sid-caret {
+  display: inline-block;
+  width: 1px;
+  height: 14px;
+  margin-left: 1px;
+  background: #a6a6a6;
+  vertical-align: -2px;
+  animation: ask-sid-caret 1s steps(1) infinite;
+}
+
+@keyframes ask-sid-caret {
+  0%,
+  45% {
+    opacity: 1;
+  }
+
+  50%,
+  100% {
+    opacity: 0;
+  }
+}
+
 .ask-sid-field__inner-glow {
   position: absolute;
   z-index: 0;
@@ -164,5 +192,10 @@
   .ask-sid-field__inner-glow {
     animation: none;
     offset-distance: 20%;
+  }
+
+  .ask-sid-caret {
+    animation: none;
+    opacity: 0;
   }
 }
