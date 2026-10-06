@@ -4,9 +4,10 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
+    "start": "node scripts/dev-local.mjs",
     "dev": "vite",
     "dev:details": "vite --config vite.details.config.ts",
-    "dev:all": "npm run dev & npm run dev:details",
+    "dev:all": "node scripts/dev-local.mjs",
     "mockup": "node scripts/serve-public.mjs",
     "build": "tsc -b && vite build",
     "lint": "eslint .",

@@ -26,15 +26,15 @@ export default defineConfig({
     alias: ackoResolveAlias,
   },
   server: {
-    host: true,
+    host: "127.0.0.1",
     port: 5174,
-    strictPort: true,
+    strictPort: false,
     open: "/",
   },
   preview: {
-    host: true,
+    host: "127.0.0.1",
     port: 4174,
-    strictPort: true,
+    strictPort: false,
     open: "/",
   },
 });
