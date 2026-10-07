@@ -518,17 +518,35 @@ function useAskSidPrompt() {
   return text;
 }
 
-export function AskSidSection({ onAsk }: { onAsk: () => void }) {
+export function AskSidSection({ onAsk }: { onAsk: (query: string) => void }) {
   const prompt = useAskSidPrompt();
   const phraseRef = useRef<HTMLSpanElement>(null);
+  const inputRef = useRef<HTMLTextAreaElement>(null);
+  const [value, setValue] = useState("");
+  const [focused, setFocused] = useState(false);
+  const hasText = value.trim().length > 0;
 
   useEffect(() => {
     const phrase = phraseRef.current;
     if (phrase) phrase.scrollLeft = phrase.scrollWidth;
   }, [prompt]);
 
+  useEffect(() => {
+    const input = inputRef.current;
+    if (!input) return;
+    input.style.height = "0px";
+    input.style.height = `${input.scrollHeight}px`;
+  }, [value]);
+
+  const submit = () => {
+    const query = value.trim();
+    if (!query) return;
+    onAsk(query);
+    setValue("");
+  };
+
   return (
-    <section className="relative h-[196px] overflow-hidden bg-[#121212]">
+    <section className="relative overflow-hidden bg-[#121212] pb-[24px]">
       <Asset src={a.askSidGrid} className="absolute left-[-6px] top-[74px] h-[170px] w-[366px] object-cover opacity-40" />
       <div className="relative z-[1] flex flex-col items-start gap-[24px] px-[20px] pt-[20px]">
         <Typography variant="heading-xs" weight="semibold" color="invert" className="w-full text-center">
@@ -537,16 +555,21 @@ export function AskSidSection({ onAsk }: { onAsk: () => void }) {
         </Typography>
         <div className="ask-sid-field-wrap">
           <span className="ask-sid-glow" aria-hidden />
-          <button
-            type="button"
-            onClick={onAsk}
-            className="ask-sid-field"
-            aria-label="Ask Sid about car variants or model"
+          <form
+            className={`ask-sid-field${focused ? " ask-sid-field--active" : ""}`}
+            onSubmit={(event) => {
+              event.preventDefault();
+              submit();
+            }}
+            onClick={(event) => {
+              if ((event.target as HTMLElement).closest(".ask-sid-send")) return;
+              inputRef.current?.focus();
+            }}
           >
             <span className="ask-sid-field__spin" aria-hidden />
             <span className="ask-sid-field__face">
               <span className="ask-sid-field__inner-glow" aria-hidden />
-              <span className="absolute inset-0 z-[1] flex items-center px-[8px]">
+              <span className="ask-sid-field__composer">
                 <span className="ask-sid-chip">
                   <span className="ask-sid-logo">
                     <span className="ask-sid-logo__glow" aria-hidden>
@@ -564,16 +587,49 @@ export function AskSidSection({ onAsk }: { onAsk: () => void }) {
                   </span>
                   <span className="text-[12px] font-bold leading-[18px] text-white">Ask Sid</span>
                 </span>
-                <span
-                  ref={phraseRef}
-                  className="ask-sid-phrase ml-[8px] text-[12px] font-normal leading-[18px] text-[#a6a6a6]"
-                >
-                  {prompt}
-                  <span className="ask-sid-caret" aria-hidden />
+                <span className="ask-sid-composer-text">
+                  <textarea
+                    ref={inputRef}
+                    className="ask-sid-input"
+                    rows={1}
+                    value={value}
+                    enterKeyHint="send"
+                    inputMode="text"
+                    aria-label={`Ask Sid about ${ASK_SID_CAR}`}
+                    onChange={(event) => setValue(event.target.value)}
+                    onFocus={() => setFocused(true)}
+                    onBlur={() => setFocused(false)}
+                    onKeyDown={(event) => {
+                      if (event.key === "Enter" && !event.shiftKey) {
+                        event.preventDefault();
+                        submit();
+                      }
+                    }}
+                  />
+                  {!hasText && !focused ? (
+                    <span ref={phraseRef} className="ask-sid-phrase" aria-hidden>
+                      {prompt}
+                      <span className="ask-sid-caret" />
+                    </span>
+                  ) : null}
                 </span>
+                {hasText ? (
+                  <button type="submit" className="ask-sid-send" aria-label="Send to Sid">
+                    <svg width="14" height="14" viewBox="0 0 14 14" aria-hidden>
+                      <path
+                        d="M2.5 7h9M8 3.5 11.5 7 8 10.5"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="1.6"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      />
+                    </svg>
+                  </button>
+                ) : null}
               </span>
             </span>
-          </button>
+          </form>
         </div>
       </div>
     </section>

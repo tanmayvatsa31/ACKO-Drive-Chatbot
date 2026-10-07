@@ -52,7 +52,7 @@
 .ask-sid-field-wrap {
   position: relative;
   width: 320px;
-  height: 48px;
+  min-height: 48px;
 }
 
 .ask-sid-glow,
@@ -83,7 +83,8 @@
 .ask-sid-field {
   position: relative;
   z-index: 1;
-  height: 48px;
+  min-height: 48px;
+  height: auto;
   width: 320px;
   padding: 1.5px;
   border: 0;
@@ -92,7 +93,7 @@
   background: transparent;
   text-align: left;
   overflow: hidden;
-  cursor: pointer;
+  cursor: text;
 }
 
 .ask-sid-field__spin {
@@ -118,11 +119,62 @@
   position: relative;
   z-index: 1;
   display: block;
-  height: 100%;
+  min-height: 45px;
+  height: auto;
   overflow: hidden;
   border-radius: 14.5px;
   corner-shape: squircle;
   background: #000;
+}
+
+.ask-sid-field__composer {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  min-height: 45px;
+  padding: 6.5px 8px;
+}
+
+.ask-sid-composer-text {
+  position: relative;
+  min-width: 0;
+  flex: 1 1 auto;
+}
+
+.ask-sid-input {
+  display: block;
+  width: 100%;
+  margin: 0;
+  padding: 6px 0 0;
+  border: 0;
+  outline: none;
+  resize: none;
+  overflow: hidden;
+  background: transparent;
+  color: #fff;
+  font-family: "Euclid Circular B", system-ui, sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+  caret-color: #fff;
+}
+
+.ask-sid-send {
+  display: grid;
+  width: 24px;
+  height: 24px;
+  flex: none;
+  align-self: flex-start;
+  margin-top: 6px;
+  place-items: center;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: #1baf71;
+  color: #fff;
+  cursor: pointer;
 }
 
 .ask-sid-logo {
@@ -189,9 +241,17 @@
 }
 
 .ask-sid-phrase {
-  min-width: 0;
+  position: absolute;
+  top: 6px;
+  right: 0;
+  left: 0;
   overflow: hidden;
+  color: #a6a6a6;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
   white-space: nowrap;
+  pointer-events: none;
 }
 
 .ask-sid-caret {

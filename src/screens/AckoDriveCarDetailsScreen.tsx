@@ -114,7 +114,9 @@ export function AckoDriveCarDetailsScreen({
           expanded={expertExpanded}
           onToggleReadMore={() => setExpertExpanded((open) => !open)}
         />
-        <AskSidSection onAsk={() => showToast("Sid is on it — more details coming soon.")} />
+        <AskSidSection
+          onAsk={(query) => showToast(`Sid is on it — “${query}”`)}
+        />
         <VariantsSection
           fuel={fuel}
           transmission={transmission}
