@@ -59,7 +59,7 @@
 .ask-sid-field__inner-glow {
   offset-path: path("M 16 1 H 304 A 15 15 0 0 1 319 16 V 32 A 15 15 0 0 1 304 47 H 16 A 15 15 0 0 1 1 32 V 16 A 15 15 0 0 1 16 1 Z");
   offset-rotate: 0deg;
-  animation: ask-sid-glow-travel 8s linear infinite;
+  animation: ask-sid-glow-travel 4.5s linear infinite;
   pointer-events: none;
 }
 
@@ -111,7 +111,7 @@
     rgba(88, 250, 147, 0.45) 345deg,
     rgba(88, 250, 147, 0) 360deg
   );
-  animation: ask-sid-border-rotate 8s linear infinite;
+  animation: ask-sid-border-rotate 4.5s linear infinite;
 }
 
 .ask-sid-field__face {
