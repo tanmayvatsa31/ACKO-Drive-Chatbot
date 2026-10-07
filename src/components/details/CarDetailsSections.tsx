@@ -518,128 +518,6 @@ function useAskSidPrompt() {
   return text;
 }
 
-function askSidHash(x: number, y: number, z: number) {
-  const value = Math.sin(x * 127.1 + y * 311.7 + z * 74.7) * 43758.5453;
-  return value - Math.floor(value);
-}
-
-function askSidNoise(x: number, y: number, z: number) {
-  const x0 = Math.floor(x);
-  const y0 = Math.floor(y);
-  const z0 = Math.floor(z);
-  const fade = (t: number) => t * t * (3 - 2 * t);
-  const sx = fade(x - x0);
-  const sy = fade(y - y0);
-  const sz = fade(z - z0);
-  const mix = (a: number, b: number, t: number) => a + (b - a) * t;
-  const sample = (ix: number, iy: number, iz: number) => askSidHash(ix, iy, iz);
-  const x00 = mix(sample(x0, y0, z0), sample(x0 + 1, y0, z0), sx);
-  const x10 = mix(sample(x0, y0 + 1, z0), sample(x0 + 1, y0 + 1, z0), sx);
-  const x01 = mix(sample(x0, y0, z0 + 1), sample(x0 + 1, y0, z0 + 1), sx);
-  const x11 = mix(sample(x0, y0 + 1, z0 + 1), sample(x0 + 1, y0 + 1, z0 + 1), sx);
-  return mix(mix(x00, x10, sy), mix(x01, x11, sy), sz);
-}
-
-function askSidFbm(x: number, y: number, z: number) {
-  let value = 0;
-  let amplitude = 0.55;
-  let frequency = 1;
-  for (let octave = 0; octave < 4; octave += 1) {
-    value += amplitude * askSidNoise(x * frequency, y * frequency, z * frequency);
-    frequency *= 2.1;
-    amplitude *= 0.5;
-  }
-  return value;
-}
-
-function AskSidOrb() {
-  const canvasRef = useRef<HTMLCanvasElement>(null);
-
-  useEffect(() => {
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-    const context = canvas.getContext("2d", { alpha: true });
-    if (!context) return;
-
-    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    const cssSize = 28;
-    const dpr = Math.min(window.devicePixelRatio || 1, 2);
-    const size = Math.round(cssSize * dpr);
-    canvas.width = size;
-    canvas.height = size;
-
-    const image = context.createImageData(size, size);
-    const pixels = image.data;
-    let angle = 0.4;
-    let raf = 0;
-    let alive = true;
-
-    const draw = () => {
-      if (!alive) return;
-      const radius = size * 0.36;
-      const center = size / 2;
-      const lightX = -0.35;
-      const lightY = -0.5;
-      const lightZ = 0.79;
-      for (let y = 0; y < size; y += 1) {
-        for (let x = 0; x < size; x += 1) {
-          const index = (y * size + x) * 4;
-          const dx = (x - center) / radius;
-          const dy = (y - center) / radius;
-          const distance = Math.hypot(dx, dy);
-          const edgeNoise = askSidFbm(dx * 1.8 + 2, dy * 1.8, angle * 0.35);
-          const limit = 1 + (edgeNoise - 0.45) * 0.16;
-
-          if (distance > limit + 0.42) {
-            pixels[index + 3] = 0;
-            continue;
-          }
-
-          if (distance <= limit) {
-            const z = Math.sqrt(Math.max(0, limit * limit - distance * distance)) / limit;
-            const nx = dx * Math.cos(angle) + z * Math.sin(angle);
-            const nz = -dx * Math.sin(angle) + z * Math.cos(angle);
-            const field = askSidFbm(nx * 2.4 + 1.2, dy * 2.4, nz * 2.4);
-            const cells = Math.abs(askSidFbm(nx * 4.6 + 3, dy * 4.6, nz * 4.6) - 0.5) * 2;
-            const light = Math.max(0, dx * lightX + dy * lightY + z * lightZ);
-            const rim = (1 - z) ** 1.5;
-            let shade = 0.16 + light * 0.5 + field * 0.42 * (0.35 + cells * 0.65) + rim * 0.38;
-            if (cells < 0.32) shade *= 0.72;
-            shade = Math.max(0, Math.min(1, shade));
-            pixels[index] = 6 + shade * 48;
-            pixels[index + 1] = 62 + shade * 168;
-            pixels[index + 2] = 48 + shade * 78;
-            pixels[index + 3] = 255;
-          } else {
-            const glow = Math.max(0, 1 - (distance - limit) / 0.42);
-            pixels[index] = 24;
-            pixels[index + 1] = 180;
-            pixels[index + 2] = 110;
-            pixels[index + 3] = glow * 150;
-          }
-        }
-      }
-      context.putImageData(image, 0, 0);
-      if (!reduced) {
-        angle += 0.018;
-        raf = window.requestAnimationFrame(draw);
-      }
-    };
-
-    draw();
-    return () => {
-      alive = false;
-      window.cancelAnimationFrame(raf);
-    };
-  }, []);
-
-  return (
-    <span className="ask-sid-orb-wrap">
-      <canvas ref={canvasRef} className="ask-sid-orb" aria-hidden />
-    </span>
-  );
-}
-
 export function AskSidSection({ onAsk }: { onAsk: () => void }) {
   const prompt = useAskSidPrompt();
   const phraseRef = useRef<HTMLSpanElement>(null);
@@ -670,7 +548,20 @@ export function AskSidSection({ onAsk }: { onAsk: () => void }) {
               <span className="ask-sid-field__inner-glow" aria-hidden />
               <span className="absolute inset-0 z-[1] flex items-center px-[8px]">
                 <span className="ask-sid-chip">
-                  <AskSidOrb />
+                  <span className="ask-sid-logo">
+                    <span className="ask-sid-logo__glow" aria-hidden>
+                      <Asset src={a.askSidChipGlow} alt="" />
+                    </span>
+                    <Asset src={a.askSidLogo} alt="" />
+                    <span
+                      className="ask-sid-logo__shine"
+                      aria-hidden
+                      style={{
+                        maskImage: `url(${a.askSidLogo})`,
+                        WebkitMaskImage: `url(${a.askSidLogo})`,
+                      }}
+                    />
+                  </span>
                   <span className="text-[12px] font-bold leading-[18px] text-white">Ask Sid</span>
                 </span>
                 <span
