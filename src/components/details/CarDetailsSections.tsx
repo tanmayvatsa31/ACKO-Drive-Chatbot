@@ -536,7 +536,7 @@ export function AskSidSection({ onAsk }: { onAsk: (query: string) => void }) {
     if (!input) return;
     input.style.height = "0px";
     input.style.height = `${input.scrollHeight}px`;
-  }, [value]);
+  }, [value, focused]);
 
   const submit = () => {
     const query = value.trim();
@@ -556,7 +556,7 @@ export function AskSidSection({ onAsk }: { onAsk: (query: string) => void }) {
         <div className="ask-sid-field-wrap">
           <span className="ask-sid-glow" aria-hidden />
           <form
-            className={`ask-sid-field${focused ? " ask-sid-field--active" : ""}`}
+            className={`ask-sid-field${focused || hasText ? " ask-sid-field--open" : ""}${hasText ? " ask-sid-field--has-text" : ""}`}
             onSubmit={(event) => {
               event.preventDefault();
               submit();
@@ -570,23 +570,25 @@ export function AskSidSection({ onAsk }: { onAsk: (query: string) => void }) {
             <span className="ask-sid-field__face">
               <span className="ask-sid-field__inner-glow" aria-hidden />
               <span className="ask-sid-field__composer">
-                <span className="ask-sid-chip">
-                  <span className="ask-sid-logo">
-                    <span className="ask-sid-logo__glow" aria-hidden>
-                      <Asset src={a.askSidChipGlow} alt="" />
+                {!focused && !hasText ? (
+                  <span className="ask-sid-chip">
+                    <span className="ask-sid-logo">
+                      <span className="ask-sid-logo__glow" aria-hidden>
+                        <Asset src={a.askSidChipGlow} alt="" />
+                      </span>
+                      <Asset src={a.askSidLogo} alt="" />
+                      <span
+                        className="ask-sid-logo__shine"
+                        aria-hidden
+                        style={{
+                          maskImage: `url(${a.askSidLogo})`,
+                          WebkitMaskImage: `url(${a.askSidLogo})`,
+                        }}
+                      />
                     </span>
-                    <Asset src={a.askSidLogo} alt="" />
-                    <span
-                      className="ask-sid-logo__shine"
-                      aria-hidden
-                      style={{
-                        maskImage: `url(${a.askSidLogo})`,
-                        WebkitMaskImage: `url(${a.askSidLogo})`,
-                      }}
-                    />
+                    <span className="text-[12px] font-bold leading-[18px] text-white">Ask Sid</span>
                   </span>
-                  <span className="text-[12px] font-bold leading-[18px] text-white">Ask Sid</span>
-                </span>
+                ) : null}
                 <span className="ask-sid-composer-text">
                   <textarea
                     ref={inputRef}

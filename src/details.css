@@ -134,7 +134,7 @@
   align-items: flex-start;
   gap: 8px;
   min-height: 45px;
-  padding: 6.5px 8px;
+  padding: 8px;
 }
 
 .ask-sid-composer-text {
@@ -147,7 +147,7 @@
   display: block;
   width: 100%;
   margin: 0;
-  padding: 6px 0 0;
+  padding: 7px 0 0;
   border: 0;
   outline: none;
   resize: none;
@@ -155,20 +155,29 @@
   background: transparent;
   color: #fff;
   font-family: "Euclid Circular B", system-ui, sans-serif;
-  font-size: 14px;
+  font-size: 12px;
   font-weight: 400;
-  line-height: 20px;
+  line-height: 18px;
   caret-color: #fff;
 }
 
+.ask-sid-field--open .ask-sid-input {
+  padding-top: 0;
+}
+
+.ask-sid-field--has-text .ask-sid-input {
+  padding-right: 32px;
+}
+
 .ask-sid-send {
+  position: absolute;
+  top: 8px;
+  right: 8px;
   display: grid;
   width: 24px;
   height: 24px;
-  flex: none;
-  align-self: flex-start;
-  margin-top: 6px;
   place-items: center;
+  margin: 0;
   padding: 0;
   border: 0;
   border-radius: 50%;
@@ -242,14 +251,14 @@
 
 .ask-sid-phrase {
   position: absolute;
-  top: 6px;
+  top: 7px;
   right: 0;
   left: 0;
   overflow: hidden;
   color: #a6a6a6;
-  font-size: 14px;
+  font-size: 12px;
   font-weight: 400;
-  line-height: 20px;
+  line-height: 18px;
   white-space: nowrap;
   pointer-events: none;
 }
