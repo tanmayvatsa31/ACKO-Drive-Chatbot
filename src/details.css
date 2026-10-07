@@ -57,7 +57,7 @@
 
 .ask-sid-glow,
 .ask-sid-field__inner-glow {
-  offset-path: path("M 24 1 H 296 A 23 23 0 0 1 296 47 H 24 A 23 23 0 0 1 24 1 Z");
+  offset-path: path("M 16 1 H 304 A 15 15 0 0 1 319 16 V 32 A 15 15 0 0 1 304 47 H 16 A 15 15 0 0 1 1 32 V 16 A 15 15 0 0 1 16 1 Z");
   offset-rotate: 0deg;
   animation: ask-sid-glow-travel 8s linear infinite;
   pointer-events: none;
@@ -87,7 +87,8 @@
   width: 320px;
   padding: 1.5px;
   border: 0;
-  border-radius: 48px;
+  border-radius: 16px;
+  corner-shape: squircle;
   background: transparent;
   text-align: left;
   overflow: hidden;
@@ -119,7 +120,8 @@
   display: block;
   height: 100%;
   overflow: hidden;
-  border-radius: 46px;
+  border-radius: 14.5px;
+  corner-shape: squircle;
   background: #000;
 }
 
