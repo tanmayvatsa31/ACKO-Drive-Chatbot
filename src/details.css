@@ -52,12 +52,11 @@
 .ask-sid-section {
   position: relative;
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: center;
-  min-height: 196px;
   overflow: hidden;
   background: #121212;
-  padding: 28px 20px;
+  padding: 20px 20px 0;
 }
 
 .ask-sid-section__content {
@@ -68,6 +67,18 @@
   flex-direction: column;
   align-items: center;
   gap: 24px;
+}
+
+.ask-sid-section__grid {
+  display: block;
+  width: 366px;
+  height: 96px;
+  margin-top: 28px;
+  margin-left: -6px;
+  object-fit: cover;
+  object-position: bottom;
+  opacity: 0.4;
+  pointer-events: none;
 }
 
 .ask-sid-field-wrap {

@@ -547,7 +547,6 @@ export function AskSidSection({ onAsk }: { onAsk: (query: string) => void }) {
 
   return (
     <section className="ask-sid-section">
-      <Asset src={a.askSidGrid} className="pointer-events-none absolute bottom-0 left-[-6px] h-[170px] w-[366px] object-cover opacity-40" />
       <div className="ask-sid-section__content">
         <Typography variant="heading-xs" weight="semibold" color="invert" className="w-full text-center">
           Looking for more details about{" "}
@@ -634,6 +633,7 @@ export function AskSidSection({ onAsk }: { onAsk: (query: string) => void }) {
           </form>
         </div>
       </div>
+      <Asset src={a.askSidGrid} className="ask-sid-section__grid" />
     </section>
   );
 }
