@@ -546,9 +546,9 @@ export function AskSidSection({ onAsk }: { onAsk: (query: string) => void }) {
   };
 
   return (
-    <section className="relative overflow-hidden bg-[#121212] pb-[24px]">
-      <Asset src={a.askSidGrid} className="absolute left-[-6px] top-[74px] h-[170px] w-[366px] object-cover opacity-40" />
-      <div className="relative z-[1] flex flex-col items-start gap-[24px] px-[20px] pt-[20px]">
+    <section className="ask-sid-section">
+      <Asset src={a.askSidGrid} className="pointer-events-none absolute bottom-0 left-[-6px] h-[170px] w-[366px] object-cover opacity-40" />
+      <div className="ask-sid-section__content">
         <Typography variant="heading-xs" weight="semibold" color="invert" className="w-full text-center">
           Looking for more details about{" "}
           <span className="whitespace-nowrap">{ASK_SID_CAR}?</span>

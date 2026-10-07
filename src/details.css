@@ -49,6 +49,27 @@
   place-items: center;
 }
 
+.ask-sid-section {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 196px;
+  overflow: hidden;
+  background: #121212;
+  padding: 28px 20px;
+}
+
+.ask-sid-section__content {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+}
+
 .ask-sid-field-wrap {
   position: relative;
   width: 320px;
@@ -131,7 +152,7 @@
   position: relative;
   z-index: 1;
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   gap: 8px;
   min-height: 45px;
   padding: 8px;
@@ -147,7 +168,7 @@
   display: block;
   width: 100%;
   margin: 0;
-  padding: 7px 0 0;
+  padding: 0;
   border: 0;
   outline: none;
   resize: none;
@@ -159,10 +180,6 @@
   font-weight: 400;
   line-height: 18px;
   caret-color: #fff;
-}
-
-.ask-sid-field--open .ask-sid-input {
-  padding-top: 0;
 }
 
 .ask-sid-field--has-text .ask-sid-input {
@@ -251,9 +268,10 @@
 
 .ask-sid-phrase {
   position: absolute;
-  top: 7px;
+  top: 50%;
   right: 0;
   left: 0;
+  transform: translateY(-50%);
   overflow: hidden;
   color: #a6a6a6;
   font-size: 12px;
