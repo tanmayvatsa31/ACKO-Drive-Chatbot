@@ -281,7 +281,7 @@ export function ExpertOpinionSection({
 }) {
   const bullets = expanded ? [...EXPERT_BULLETS, ...EXPERT_BULLETS_MORE] : EXPERT_BULLETS;
   return (
-    <section id="section-expert" className="bg-[#121212] pb-[48px] pt-[24px]">
+    <section id="section-expert" className="bg-[#121212] pb-0 pt-[24px]">
       <div className="flex items-center justify-center gap-[12px] px-[20px]">
         <span className="h-px flex-1 bg-[#4b4b4b]" />
         <Typography variant="label-sm" weight="medium" color="invert" className="shrink-0 text-center">
@@ -548,7 +548,7 @@ export function AskSidSection({ onAsk }: { onAsk: (query: string) => void }) {
   return (
     <section className="ask-sid-section">
       <div className="ask-sid-section__content">
-        <Typography variant="heading-xs" weight="semibold" color="invert" className="w-full text-center">
+        <Typography variant="heading-xs" weight="semibold" color="invert" className="w-full text-left">
           Looking for more details about{" "}
           <span className="whitespace-nowrap">{ASK_SID_CAR}?</span>
         </Typography>
