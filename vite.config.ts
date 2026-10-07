@@ -24,6 +24,7 @@ function logDevUrls(): Plugin {
 }
 
 export default defineConfig({
+  base: process.env.PAGES_BASE ?? "/",
   plugins: [tailwindcss(), react(), logDevUrls()],
   resolve: {
     alias: ackoResolveAlias,

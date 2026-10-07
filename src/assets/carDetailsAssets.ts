@@ -1,4 +1,4 @@
-const base = "/assets/acko-drive-details";
+const base = `${import.meta.env.BASE_URL}assets/acko-drive-details`;
 
 export const carDetailsAssets = {
   statusBattery: `${base}/status-battery.svg`,
